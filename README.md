@@ -11,3 +11,8 @@ Lightweight pricing primitives (Black-Scholes, Monte Carlo, Heston).
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+
+# Examples to run
+python run.py examples
+python run.py feeder --symbol BTCUSDT --duration 30 --out data/prices.csv
+python run.py test

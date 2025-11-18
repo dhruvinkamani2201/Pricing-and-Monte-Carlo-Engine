@@ -1,4 +1,6 @@
-# examples/run_examples.py
+import os, sys
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
 from pricing.bs import black_scholes_call
 from pricing.monte_carlo import mc_european_call
 from pricing.heston_mc import heston_mc_call
