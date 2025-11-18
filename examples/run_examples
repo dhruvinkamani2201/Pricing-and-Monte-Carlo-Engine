@@ -1,0 +1,23 @@
+# examples/run_examples.py
+from pricing.bs import black_scholes_call
+from pricing.monte_carlo import mc_european_call
+from pricing.heston_mc import heston_mc_call
+import time
+
+def run():
+    S0, K, r, sigma, T = 100.0, 100.0, 0.01, 0.2, 1.0
+    print("Black-Scholes call:", black_scholes_call(S0, K, r, sigma, T))
+
+    t0 = time.time()
+    price, stderr = mc_european_call(S0, K, r, sigma, T, n_paths=100000, n_steps=1)
+    print(f"MC BS call (paths=100k): {price:.6f} ± {stderr:.6f} (time {time.time()-t0:.2f}s)")
+
+    # Heston params
+    v0 = 0.04; kappa = 1.2; theta = 0.04; xi = 0.6; rho = -0.7
+    t0 = time.time()
+    price_h, stderr_h = heston_mc_call(S0, K, r, v0, kappa, theta, xi, rho, T,
+                                      n_paths=50000, n_steps=200)
+    print(f"Heston MC call (50k paths): {price_h:.6f} ± {stderr_h:.6f} (time {time.time()-t0:.2f}s)")
+
+if __name__ == "__main__":
+    run()
