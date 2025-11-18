@@ -6,7 +6,7 @@ import csv
 import time
 from pathlib import Path
 
-BINANCE_WS = "wss://stream.binance.com:9443/ws/"
+BINANCE_WS = "wss://stream.binance.us:9443/ws/"
 
 async def run(symbol: str, duration: int, out: str):
     symbol_stream = symbol.lower() + "@trade"
